@@ -5,7 +5,7 @@ enum Rank {
 }
 
 enum Suit {
-    HEARTS, SPADES
+    SPADES, HEARTS, DIAMONDS, CLUBS
 }
 
 class Card {
