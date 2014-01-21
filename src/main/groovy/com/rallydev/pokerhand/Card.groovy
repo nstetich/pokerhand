@@ -83,4 +83,14 @@ class Card implements Comparable<Card> {
         return r
     }
 
+    public boolean equals(Object that) {
+        return (that instanceof Card
+            && that.rank == this.rank
+            && that.suit == this.suit)
+    }
+
+    public int hashCode() {
+        return Objects.hash(rank, suit)
+    }
+
 }

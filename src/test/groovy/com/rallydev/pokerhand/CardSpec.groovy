@@ -2,6 +2,9 @@ package com.rallydev.pokerhand
 
 import spock.lang.Specification
 
+import static com.rallydev.pokerhand.Suit.*
+import static com.rallydev.pokerhand.Rank.*
+
 class CardSpec extends Specification {
     def "card should have a rank and a suit"() {
         given: 
@@ -182,7 +185,23 @@ class CardSpec extends Specification {
         "Kd" | "Ad"
         "9h" | "10h"
         "2c" | "2d"
-
     }
+
+    def "card should implement equals and hashCode"() {
+        when:
+        def left = new Card(rank, suit) 
+        def right = new Card(rank, suit)
+        
+        then:
+        left == right
+        left.hashCode() == right.hashCode()
+
+        where:
+        rank  | suit
+        KING  | HEARTS
+        QUEEN | SPADES
+    }
+
+    
 
 }

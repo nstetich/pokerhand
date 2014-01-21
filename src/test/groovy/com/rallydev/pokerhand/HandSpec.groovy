@@ -1,6 +1,7 @@
 package com.rallydev.pokerhand
 
 import spock.lang.Specification
+import spock.lang.Unroll
 
 import static com.rallydev.pokerhand.Rank.*
 import static com.rallydev.pokerhand.Suit.*
@@ -25,7 +26,7 @@ class HandSpec extends Specification {
         ]
     }
 
-    def "a hand can be parsed from an input string"() {
+   def "a hand can be parsed from an input string"() {
         expect:
         Hand.parse(cardsString).cards == cards
 
@@ -38,7 +39,7 @@ class HandSpec extends Specification {
                                new Card(THREE, DIAMONDS) ]
     }
 
-    def "hand parsing should throw an exception for invalid hand strings"() {
+    def "hand parsing should throw an exception for invalid hand"() {
         when:
         Hand.parse(str)
 
@@ -60,4 +61,13 @@ class HandSpec extends Specification {
             '11d 6c 10s Qh Qs'
         ]
     }
+
+    def "hand should not allow duplicate cards"() {
+        when:
+        Hand.parse("4d 6c 10s 6c Qh")
+
+        then:
+        thrown(IllegalArgumentException)
+    }
+
 }
