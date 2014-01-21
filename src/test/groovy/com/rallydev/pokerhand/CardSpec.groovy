@@ -22,4 +22,9 @@ class CardSpec extends Specification {
         expect:
         Suit.values().size() == 4
     }
+
+    def "there should be thirteen ranks"() {
+        expect:
+        Rank.values().size() == 13
+    }
 }
