@@ -50,8 +50,16 @@ enum Suit {
 }
 
 class Card implements Comparable<Card> {
-    Rank rank
-    Suit suit
+    public final Rank rank
+    public final Suit suit
+
+    Card(Rank rank, Suit suit) {
+        if (!suit || !rank) {
+            throw new IllegalArgumentException("rank and suit may not be null")
+        }
+        this.rank = rank
+        this.suit = suit
+    }
 
     public static Card parse(String str) {
         def trimmed = str?.trim()
@@ -60,13 +68,11 @@ class Card implements Comparable<Card> {
         }
         def rank = trimmed[0..-2] 
         def suit = trimmed[-1]
-        return new Card(rank: Rank.parse(rank), suit: Suit.parse(suit))
+        return new Card(Rank.parse(rank), Suit.parse(suit))
     }
 
     public String toString() {
-        if (rank && suit) {
-            return rank.text + suit.text
-        }
+        return rank.text + suit.text
     }
 
     public int compareTo(Card that) {
