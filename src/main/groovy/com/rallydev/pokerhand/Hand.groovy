@@ -13,6 +13,7 @@ class Hand {
             counts[card] = count + 1
         }
         if (counts.values().find { count -> count > 1 }) {
+        if (hasDuplicates(cards)) {
             throw new IllegalArgumentException("A hand must not have duplicates of a card.")
         }
         this.cards = cards
@@ -20,5 +21,14 @@ class Hand {
 
     public static final parse(String str) {
         return new Hand(str?.split(/\s+/).collect{ Card.parse(it) })
+    }
+
+    private static boolean hasDuplicates(Collection<Card> cards) {
+        def counts = [:]
+        for (Card card : cards) {
+            def count = counts.get(card, 0)
+            counts[card] = count + 1
+        }
+        return counts.values().find { count -> count > 1 }  
     }
 }
