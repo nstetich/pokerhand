@@ -49,7 +49,7 @@ enum Suit {
     }
 }
 
-class Card {
+class Card implements Comparable<Card> {
     Rank rank
     Suit suit
 
@@ -68,4 +68,13 @@ class Card {
             return rank.text + suit.text
         }
     }
+
+    public int compareTo(Card that) {
+        int r = this.rank.compareTo(that.rank)
+        if (r == 0) {
+            r = this.suit.compareTo(that.suit)
+        }
+        return r
+    }
+
 }

@@ -155,4 +155,20 @@ class CardSpec extends Specification {
         Rank.TEN   | Suit.DIAMONDS | '10d'
     }
 
+    def "cards should be comparable"() {
+        expect:
+        def loCard = Card.parse(low)
+        def hiCard = Card.parse(high)
+        loCard < hiCard
+        hiCard > loCard
+    
+        where:
+        low  | high
+        "2c" | "3c"
+        "Kd" | "Ad"
+        "9h" | "10h"
+        "2c" | "2d"
+
+    }
+
 }
