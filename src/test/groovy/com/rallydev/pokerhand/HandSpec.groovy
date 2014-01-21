@@ -70,4 +70,19 @@ class HandSpec extends Specification {
         thrown(IllegalArgumentException)
     }
 
+    def "sortedCards field should contain sorted cards"() {
+        when:
+        def sorted = Hand.parse(str).sortedCards
+        
+        then:
+        for (int n = 0; n < sorted.size(); n++) {
+            if (n > 0) {
+                assert sorted[n - 1] < sorted[n]
+            }
+        }
+
+        where:
+        str << [ 'Qs 4d 10s Kh 4c' ]
+    }
+
 }
