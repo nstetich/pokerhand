@@ -5,7 +5,7 @@ import spock.lang.Specification
 class CardSpec extends Specification {
     def "card should have a rank and a suit"() {
         given: 
-        def card = new Card(rank:rank, suit:suit)
+        def card = new Card(rank, suit)
         
         expect:
         card != null
@@ -17,6 +17,20 @@ class CardSpec extends Specification {
         Rank.ACE   | Suit.HEARTS
         Rank.QUEEN | Suit.SPADES
    }
+
+    def "card constructor should throw exception for invalid rank or suit"() {
+        when:
+        new Card(rank, suit)
+
+        then:
+        thrown(IllegalArgumentException)
+
+        where:
+        rank     | suit
+        null     | Suit.CLUBS
+        Rank.TWO | null
+        null     | null
+    }
 
     def "there should be four suits"() {
         expect:
@@ -146,7 +160,7 @@ class CardSpec extends Specification {
 
     def "card should show text representation for toString"() {
         expect:
-        new Card(rank: rank, suit: suit).toString() == str
+        new Card(rank, suit).toString() == str
 
         where:
         rank       | suit          | str
