@@ -35,17 +35,19 @@ enum Outcome {
         return [hand.sortedCards.first()]  
     }),
     PAIR({ hand ->
+        return Outcome.findPair(hand.sortedCards)
+    }),
+    TWO_PAIR({ hand ->
         def cards = hand.sortedCards
-        for (int n = 0; n < cards.size() - 1; n++) {
-            def a = cards[n]
-            def b = cards[n + 1]
-            if (a.rank == b.rank) {
-                return [a, b]
+        def firstPair = Outcome.findPair(cards)
+        if (firstPair) {
+            def secondPair = Outcome.findPair(cards - firstPair)
+            if (secondPair) {
+                return firstPair + secondPair
             }
         }
-        return null;
+        return null
     });
-//     TWO_PAIR,
 //     THREE_OF_A_KIND,
 //     STRAIGHT,
 //     FLUSH,
@@ -61,5 +63,16 @@ enum Outcome {
 
     public List<Card> call(Hand hand) {
         return closure.call(hand)
+    }
+
+    public static List<Card> findPair(List<Card> sortedCards) {
+        for (int n = 0; n < sortedCards.size() - 1; n++) {
+            def a = sortedCards[n]
+            def b = sortedCards[n + 1]
+            if (a.rank == b.rank) {
+                return [a, b]
+            }
+        }
+        return null;
     }
 }
