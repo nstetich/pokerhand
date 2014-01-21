@@ -144,4 +144,15 @@ class CardSpec extends Specification {
         str << ['jC', '11h', 'toolong', '', null]
     }
 
+    def "card should show text representation for toString"() {
+        expect:
+        new Card(rank: rank, suit: suit).toString() == str
+
+        where:
+        rank       | suit          | str
+        Rank.ACE   | Suit.HEARTS   | 'Ah'
+        Rank.QUEEN | Suit.SPADES   | 'Qs'
+        Rank.TEN   | Suit.DIAMONDS | '10d'
+    }
+
 }

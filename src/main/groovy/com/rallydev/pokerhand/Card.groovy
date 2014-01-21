@@ -62,4 +62,10 @@ class Card {
         def suit = trimmed[-1]
         return new Card(rank: Rank.parse(rank), suit: Suit.parse(suit))
     }
+
+    public String toString() {
+        if (rank && suit) {
+            return rank.text + suit.text
+        }
+    }
 }
