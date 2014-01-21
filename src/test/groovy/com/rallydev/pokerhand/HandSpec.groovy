@@ -86,7 +86,7 @@ class HandSpec extends Specification {
         str << [ 'Qs 4d 10s Kh 4c' ]
     }
 
-    def "cardsByRank holds cards partitioned by rank"() {
+    def "cardsByRank should hold cards partitioned by rank"() {
         expect:
         Hand.parse(str).cardsByRank == 
             cardsByRank.collectEntries { k, v ->
@@ -102,6 +102,22 @@ class HandSpec extends Specification {
                              (SIX): '6d' ]
         '4c 4d 4s 4h 8d' | [ (FOUR): '4c 4d 4s 4h',
                              (EIGHT): '8d' ]
+    }
+
+    def "cardsBySuit should hold cards partitioned by suit"() {
+        expect:
+        Hand.parse(str).cardsBySuit == 
+            cardsBySuit.collectEntries { k, v ->
+                [k, v.split().collect { Card.parse(it) }]
+            }
+
+        where:
+        str               | cardsBySuit
+        '2c 2d 2s 2h Qc'  | [ (CLUBS): '2c Qc',
+                              (DIAMONDS): '2d',
+                              (SPADES): '2s',
+                              (HEARTS): '2h' ]
+        '10h Jh Qh Kh Ah' | [ (HEARTS): '10h Jh Qh Kh Ah' ]
     }
 
 }

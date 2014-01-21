@@ -16,6 +16,7 @@ class Hand {
        this.cards = cards
        sortedCards = cards.sort(false)
        cardsByRank = sortedCards.groupBy { card -> card.rank }
+       cardsBySuit = sortedCards.groupBy { card -> card.suit }
     }
 
     public static final parse(String str) {
