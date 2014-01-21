@@ -52,4 +52,14 @@ enum Suit {
 class Card {
     Rank rank
     Suit suit
+
+    public static Card parse(String str) {
+        def trimmed = str?.trim()
+        if (trimmed == null || !(trimmed.size() in 2..3)) {
+            throw new IllegalArgumentException("Invalid card '${str}'")
+        }
+        def rank = trimmed[0..-2] 
+        def suit = trimmed[-1]
+        return new Card(rank: Rank.parse(rank), suit: Suit.parse(suit))
+    }
 }

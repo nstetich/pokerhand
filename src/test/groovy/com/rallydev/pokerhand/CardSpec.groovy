@@ -118,4 +118,30 @@ class CardSpec extends Specification {
         str << ['C', 'D', 'S', 'H', '1', '', null]
     }
 
+    def "card should support parsing from string representation"() {
+        expect:
+        def card = Card.parse(str)
+        card.rank == rank
+        card.suit == suit
+
+        where:
+        str     | rank       | suit
+        'Ah'    | Rank.ACE   | Suit.HEARTS
+        'Qs'    | Rank.QUEEN | Suit.SPADES
+        '2c'    | Rank.TWO   | Suit.CLUBS
+        '10d'   | Rank.TEN   | Suit.DIAMONDS
+        '  Jc ' | Rank.JACK  | Suit.CLUBS
+    }
+
+    def "card parsing should throw exception for illegal strings"() {
+        when:
+        Card.parse(str)
+
+        then:
+        thrown(IllegalArgumentException)
+
+        where:
+        str << ['jC', '11h', 'toolong', '', null]
+    }
+
 }
