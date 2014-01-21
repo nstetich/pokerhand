@@ -27,4 +27,25 @@ class CardSpec extends Specification {
         expect:
         Rank.values().size() == 13
     }
+
+    def "ranks should support comparison"() {
+        expect:
+        high > low
+        low < high
+
+        where:
+        low       | high
+        Rank.TWO  | Rank.THREE
+        Rank.FIVE | Rank.JACK
+        Rank.JACK | Rank.QUEEN
+        Rank.KING | Rank.ACE
+    }
+
+    def "ace should outrank all other ranks"() {
+        expect:
+        Rank.ACE > otherRank
+
+        where:
+        otherRank << (Rank.values() - Rank.ACE)
+    }
 }
