@@ -12,7 +12,7 @@ class Hand {
             throw new IllegalArgumentException("A hand must not have duplicates of a card.")
         }
        this.cards = cards
-       this.sortedCards = cards.sort(false)
+       this.sortedCards = cards.sort(false) { a, b -> b <=> a }
     }
 
     public static final parse(String str) {
