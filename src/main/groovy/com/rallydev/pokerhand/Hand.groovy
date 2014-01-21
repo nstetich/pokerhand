@@ -33,8 +33,18 @@ class Hand {
 enum Outcome {
     HIGH_CARD({ hand ->
         return [hand.sortedCards.first()]  
+    }),
+    PAIR({ hand ->
+        def cards = hand.sortedCards
+        for (int n = 0; n < cards.size() - 1; n++) {
+            def a = cards[n]
+            def b = cards[n + 1]
+            if (a.rank == b.rank) {
+                return [a, b]
+            }
+        }
+        return null;
     });
-//     PAIR,
 //     TWO_PAIR,
 //     THREE_OF_A_KIND,
 //     STRAIGHT,
@@ -43,7 +53,6 @@ enum Outcome {
 //     FOUR_OF_A_KIND,
 //     STRAIGHT_FLUSH,
 //     ROYAL_FLUSH
-   
     public final Closure closure
 
     Outcome(Closure closure) {
