@@ -17,4 +17,9 @@ class CardSpec extends Specification {
         Rank.ACE   | Suit.HEARTS
         Rank.QUEEN | Suit.SPADES
    }
+
+    def "there should be four suits"() {
+        expect:
+        Suit.values().size() == 4
+    }
 }
