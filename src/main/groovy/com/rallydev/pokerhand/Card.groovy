@@ -1,11 +1,11 @@
 package com.rallydev.pokerhand
 
 enum Rank {
-    ACE
+    ACE, QUEEN
 }
 
 enum Suit {
-    HEARTS
+    HEARTS, SPADES
 }
 
 class Card {
