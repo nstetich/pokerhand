@@ -27,4 +27,30 @@ class Hand {
         }
         return counts.values().find { count -> count > 1 }  
     }
+
+}
+
+enum Outcome {
+    HIGH_CARD({ hand ->
+        return [hand.sortedCards.first()]  
+    });
+//     PAIR,
+//     TWO_PAIR,
+//     THREE_OF_A_KIND,
+//     STRAIGHT,
+//     FLUSH,
+//     FULL_HOUSE,
+//     FOUR_OF_A_KIND,
+//     STRAIGHT_FLUSH,
+//     ROYAL_FLUSH
+   
+    public final Closure closure
+
+    Outcome(Closure closure) {
+        this.closure = closure
+    }
+
+    public List<Card> call(Hand hand) {
+        return closure.call(hand)
+    }
 }

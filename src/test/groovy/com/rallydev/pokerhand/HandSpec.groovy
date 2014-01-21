@@ -5,6 +5,7 @@ import spock.lang.Unroll
 
 import static com.rallydev.pokerhand.Rank.*
 import static com.rallydev.pokerhand.Suit.*
+import static com.rallydev.pokerhand.Outcome.*
 
 class HandSpec extends Specification {
     def "hand constructor should throw exception if there are not exactly five cards"() {
@@ -83,6 +84,17 @@ class HandSpec extends Specification {
 
         where:
         str << [ 'Qs 4d 10s Kh 4c' ]
+    }
+
+    def "high card outcome should be highest card in the hand"() {
+        expect:
+        outcome.call(Hand.parse(cards)) == 
+            outcomeCards.collect { Card.parse(it) }
+        
+        where:
+        cards            | outcome   | outcomeCards
+        "2c Qs Kh Ad 3s" | HIGH_CARD | [ "Ad" ]
+        "4h 5h 6h 7h 8h" | HIGH_CARD | [ "8h" ]
     }
 
 }
