@@ -1,7 +1,8 @@
 package com.rallydev.pokerhand
 
 enum Rank {
-    ACE, QUEEN
+    ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN,
+    JACK, QUEEN, KING 
 }
 
 enum Suit {
