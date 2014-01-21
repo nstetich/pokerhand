@@ -71,56 +71,19 @@ class HandSpec extends Specification {
         thrown(IllegalArgumentException)
     }
 
-    def "sortedCards field should contain reverse-sorted cards"() {
+    def "sortedCards field should contain sorted cards"() {
         when:
         def sorted = Hand.parse(str).sortedCards
         
         then:
         for (int n = 0; n < sorted.size(); n++) {
             if (n > 0) {
-                assert sorted[n - 1] > sorted[n]
+                assert sorted[n - 1] < sorted[n]
             }
         }
 
         where:
         str << [ 'Qs 4d 10s Kh 4c' ]
-    }
-
-    def "high card outcome should be highest card in the hand"() {
-        expect:
-        outcome.call(Hand.parse(cards)) as Set == 
-            outcomeCards?.split(/\s+/)?.collect { Card.parse(it) } as Set
-        
-        where:
-        cards            | outcome   | outcomeCards
-        "2c Qs Kh Ad 3s" | HIGH_CARD | 'Ad' 
-        "4h 5h 6h 7h 8h" | HIGH_CARD | '8h'
-    }
-
-    def "pair outcome should be highest pair in the hand"() {
-        expect:
-        outcome.call(Hand.parse(cards)) as Set == 
-            outcomeCards?.split(/\s+/)?.collect { Card.parse(it) } as Set
-
-        where:
-        cards              | outcome | outcomeCards
-        "2c Js 3d Jc Qh"   | PAIR    | 'Js Jc' // find the pair
-        "3d 4c 10s 10c 4h" | PAIR    | '10s 10c' // select highest pair
-        "3d 7s 3h 7c 7h"   | PAIR    | '7h 7s' // treat three-of-a-kind as a pair
-        "2h 3h 4h 5h 6h"   | PAIR    | null // no pairs in hand
-
-    }
-
-    def "two pair outcome should be highest two pairs"() {
-        expect:
-        outcome.call(Hand.parse(cards)) as Set == 
-            outcomeCards?.split(/\s+/)?.collect { Card.parse(it) } as Set
-        
-        where:
-        cards              | outcome   | outcomeCards
-        "3d 4c 10s 10c 4h" | TWO_PAIR  | '10s 10c 4h 4c' // find two pair
-        "10h 5d 5c 2h As"  | TWO_PAIR  | null // only one pair
-        "2h 3h 4h 5h 6h"   | TWO_PAIR  | null // no pairs in hand
     }
 
 }

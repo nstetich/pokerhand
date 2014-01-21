@@ -12,7 +12,7 @@ class Hand {
             throw new IllegalArgumentException("A hand must not have duplicates of a card.")
         }
        this.cards = cards
-       this.sortedCards = cards.sort(false) { a, b -> b <=> a }
+       this.sortedCards = cards.sort(false)
     }
 
     public static final parse(String str) {
@@ -31,48 +31,14 @@ class Hand {
 }
 
 enum Outcome {
-    HIGH_CARD({ hand ->
-        return [hand.sortedCards.first()]  
-    }),
-    PAIR({ hand ->
-        return Outcome.findPair(hand.sortedCards)
-    }),
-    TWO_PAIR({ hand ->
-        def cards = hand.sortedCards
-        def firstPair = Outcome.findPair(cards)
-        if (firstPair) {
-            def secondPair = Outcome.findPair(cards - firstPair)
-            if (secondPair) {
-                return firstPair + secondPair
-            }
-        }
-        return null
-    });
-//     THREE_OF_A_KIND,
-//     STRAIGHT,
-//     FLUSH,
-//     FULL_HOUSE,
-//     FOUR_OF_A_KIND,
-//     STRAIGHT_FLUSH,
-//     ROYAL_FLUSH
-    public final Closure closure
-
-    Outcome(Closure closure) {
-        this.closure = closure
-    }
-
-    public List<Card> call(Hand hand) {
-        return closure.call(hand)
-    }
-
-    public static List<Card> findPair(List<Card> sortedCards) {
-        for (int n = 0; n < sortedCards.size() - 1; n++) {
-            def a = sortedCards[n]
-            def b = sortedCards[n + 1]
-            if (a.rank == b.rank) {
-                return [a, b]
-            }
-        }
-        return null;
-    }
+    HIGH_CARD,
+    PAIR,
+    TWO_PAIR,
+    THREE_OF_A_KIND,
+    STRAIGHT,
+    FLUSH,
+    FULL_HOUSE,
+    FOUR_OF_A_KIND,
+    STRAIGHT_FLUSH,
+    ROYAL_FLUSH
 }
