@@ -86,4 +86,22 @@ class HandSpec extends Specification {
         str << [ 'Qs 4d 10s Kh 4c' ]
     }
 
+    def "cardsByRank holds cards partitioned by rank"() {
+        expect:
+        Hand.parse(str).cardsByRank == 
+            cardsByRank.collectEntries { k, v ->
+                [k, v.split().collect { Card.parse(it) }]
+            }
+
+        where:
+        str              | cardsByRank
+        '2d 3d 4d 5d 6d' | [ (TWO): '2d', 
+                             (THREE): '3d',
+                             (FOUR): '4d',
+                             (FIVE): '5d',
+                             (SIX): '6d' ]
+        '4c 4d 4s 4h 8d' | [ (FOUR): '4c 4d 4s 4h',
+                             (EIGHT): '8d' ]
+    }
+
 }

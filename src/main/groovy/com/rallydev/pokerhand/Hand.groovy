@@ -3,6 +3,8 @@ package com.rallydev.pokerhand
 class Hand {
     public final List<Card> cards;
     public final List<Card> sortedCards;
+    public final Map<Rank, Collection<Card>> cardsByRank;
+    public final Map<Suit, Collection<Card>> cardsBySuit;
 
     Hand(List<Card> cards) {
         if (cards?.size() != 5) {
@@ -12,7 +14,8 @@ class Hand {
             throw new IllegalArgumentException("A hand must not have duplicates of a card.")
         }
        this.cards = cards
-       this.sortedCards = cards.sort(false)
+       sortedCards = cards.sort(false)
+       cardsByRank = sortedCards.groupBy { card -> card.rank }
     }
 
     public static final parse(String str) {
