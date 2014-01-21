@@ -49,6 +49,18 @@ class CardSpec extends Specification {
         otherRank << (Rank.values() - Rank.ACE)
     }
 
+    def "suits should support comparison"() {
+        expect:
+        high > low
+        low < high
+
+        where:
+        low            | high
+        Suit.CLUBS     | Suit.DIAMONDS
+        Suit.DIAMONDS  | Suit.SPADES
+        Suit.SPADES    | Suit.HEARTS
+    }
+
     def "rank should support parsing from string representation"() {
         expect:
         rank == Rank.parse(str)
@@ -68,6 +80,42 @@ class CardSpec extends Specification {
         Rank.QUEEN | 'Q'
         Rank.KING  | 'K'
         Rank.ACE   | 'A'
+    }
+
+    def "rank parsing should throw error for unknown string"() {
+        when:
+        Rank.parse(str)
+
+        then:
+        def e = thrown(IllegalArgumentException)
+        e.message =~ /'$str'/
+
+        where:
+        str << ['0', '1', '11', 'j', 'q', 'k', 'a', '', null]
+    }
+
+    def "suit should support parsing from string representation"() {
+        expect:
+        suit == Suit.parse(str)
+
+        where:
+        suit          | str
+        Suit.CLUBS    | 'c'
+        Suit.DIAMONDS | 'd'
+        Suit.SPADES   | 's'
+        Suit.HEARTS   | 'h'
+    }
+
+    def "suit parsing should throw exception for unknown strings"() {
+        when:
+        Suit.parse(str)
+
+        then:
+        def e = thrown(IllegalArgumentException)
+        e.message =~ /'$str'/
+
+        where:
+        str << ['C', 'D', 'S', 'H', '1', '', null]
     }
 
 }
