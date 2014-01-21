@@ -13,7 +13,8 @@ class CardSpec extends Specification {
         card.suit == suit
 
         where:
-        rank     | suit
-        Rank.ACE | Suit.HEARTS
+        rank       | suit
+        Rank.ACE   | Suit.HEARTS
+        Rank.QUEEN | Suit.SPADES
    }
 }
