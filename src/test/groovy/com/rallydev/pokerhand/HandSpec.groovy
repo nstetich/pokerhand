@@ -129,6 +129,9 @@ class HandSpec extends Specification {
         '4h 10h 6c Js Qh' | false
         '2c 3d 4h 5s 6c'  | true
         '4h 6c 5s 2c 3d'  | true // Independent of order in hand
+        'Ac 2h 3s 4d 5h'  | true // Ace may be low card
+        'Kh Ah 2c 3d 4s'  | false // Straight may not "wrap around"
+        'Ac 2h 3s 4d As'  | false
     }
 
 }

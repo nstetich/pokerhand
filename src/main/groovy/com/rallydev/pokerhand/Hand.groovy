@@ -1,5 +1,8 @@
 package com.rallydev.pokerhand
 
+import static com.rallydev.pokerhand.Rank.*
+import static com.rallydev.pokerhand.Suit.*
+
 class Hand {
     public final List<Card> cards;
     public final List<Card> sortedCards;
@@ -34,7 +37,12 @@ class Hand {
 
     public boolean isStraight() {
         boolean straight = true
-        for (int n = 0; n < sortedCards.size() - 1; n++) {
+        int end = sortedCards.size() - 1
+        // Ace may serve as low card
+        if (cardsByRank[ACE] && cardsByRank[TWO]) {
+            end = sortedCards.size() - 2   
+        }
+        for (int n = 0; n < end; n++) {
             Card current = sortedCards[n]
             Card next = sortedCards[n + 1]
             straight = straight && current.isAdjacentTo(next)
