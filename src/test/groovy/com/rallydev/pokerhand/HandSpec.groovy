@@ -134,4 +134,16 @@ class HandSpec extends Specification {
         'Ac 2h 3s 4d As'  | false
     }
 
+    def "isFlush should reflect whether a hand is a flush"() {
+        expect:
+        Hand.parse(str).isFlush() == isFlush
+
+        where:
+        str               | isFlush
+        "2h 10h 7h 8h 4h" | true
+        "2h 10h 7h 8h 4d" | false
+        "2d 2c 2s 2h 10h" | false
+        "2d 10d 7d 8d 4d" | true
+    }
+
 }

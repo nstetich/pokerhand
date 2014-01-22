@@ -50,6 +50,10 @@ class Hand {
         return straight
     }
 
+    public boolean isFlush() {
+        return 5 in cardsBySuit.values()*.size()
+    }
+
 }
 
 enum Outcome {
