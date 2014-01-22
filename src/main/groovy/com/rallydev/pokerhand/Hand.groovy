@@ -35,8 +35,8 @@ class Hand {
     public boolean isStraight() {
         boolean straight = true
         for (int n = 0; n < sortedCards.size() - 1; n++) {
-            Card current = cards[n]
-            Card next = cards[n + 1]
+            Card current = sortedCards[n]
+            Card next = sortedCards[n + 1]
             straight = straight && current.isAdjacentTo(next)
         }
         return straight

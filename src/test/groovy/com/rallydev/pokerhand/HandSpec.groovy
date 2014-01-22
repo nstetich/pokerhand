@@ -128,6 +128,7 @@ class HandSpec extends Specification {
         str               | isStraight
         '4h 10h 6c Js Qh' | false
         '2c 3d 4h 5s 6c'  | true
+        '4h 6c 5s 2c 3d'  | true // Independent of order in hand
     }
 
 }
