@@ -146,4 +146,17 @@ class HandSpec extends Specification {
         "2d 10d 7d 8d 4d" | true
     }
 
+    def "evaluate should always return the highest matching rank"() {
+        expect:
+        def evaluation = Hand.parse(hand).evaluate()
+        evaluation != null
+        evaluation.outcome == outcome
+        evaluation.cards as Set == 
+            cards.split().collect{Card.parse(it)} as Set
+        
+        where:
+        hand              | outcome        | cards
+        "10h Jh Qh Kh Ah" | ROYAL_FLUSH    | "10h Jh Qh Kh Ah"
+    }
+
 }

@@ -54,6 +54,27 @@ class Hand {
         return 5 in cardsBySuit.values()*.size()
     }
 
+    public Evaluation evaluate() { 
+        def e
+        def flush = isFlush()
+        def straight = isStraight()
+        if (straight && flush) {
+            if (sortedCards.first().rank == TEN) {
+                return new Evaluation(Outcome.ROYAL_FLUSH, sortedCards)
+            } 
+        } 
+    }
+
+}
+
+class Evaluation {
+    final Outcome outcome
+    final Collection<Card> cards
+
+    Evaluation(Outcome outcome, Collection<Card> cards) {
+        this.outcome = outcome
+        this.cards = cards
+    }
 }
 
 enum Outcome {

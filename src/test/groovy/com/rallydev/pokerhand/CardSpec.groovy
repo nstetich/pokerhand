@@ -207,6 +207,7 @@ class CardSpec extends Specification {
         TWO.isAdjacentTo(THREE)
         THREE.isAdjacentTo(FOUR)
         !TWO.isAdjacentTo(FOUR)
+        !TWO.isAdjacentTo(TWO)
         KING.isAdjacentTo(ACE)
     }
 
