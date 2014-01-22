@@ -120,4 +120,14 @@ class HandSpec extends Specification {
         '10h Jh Qh Kh Ah' | [ (HEARTS): '10h Jh Qh Kh Ah' ]
     }
 
+    def "isStraight should reflect whether a hand has a straight"() {
+        expect:
+        Hand.parse(str).isStraight() == isStraight
+
+        where:
+        str               | isStraight
+        '4h 10h 6c Js Qh' | false
+        '2c 3d 4h 5s 6c'  | true
+    }
+
 }

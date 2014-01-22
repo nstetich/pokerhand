@@ -32,6 +32,16 @@ class Hand {
         return counts.values().find { count -> count > 1 }  
     }
 
+    public boolean isStraight() {
+        boolean straight = true
+        for (int n = 0; n < sortedCards.size() - 1; n++) {
+            Card current = cards[n]
+            Card next = cards[n + 1]
+            straight = straight && current.isAdjacentTo(next)
+        }
+        return straight
+    }
+
 }
 
 enum Outcome {

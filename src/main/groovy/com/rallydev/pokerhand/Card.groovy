@@ -27,6 +27,10 @@ enum Rank {
             throw new IllegalArgumentException("Invalid rank '${str}'")
         return rank
     }
+
+    public boolean isAdjacentTo(Rank that) {
+        Math.abs(this.ordinal() - that.ordinal()) == 1
+    }
 }
 
 enum Suit {
@@ -91,6 +95,10 @@ class Card implements Comparable<Card> {
 
     public int hashCode() {
         return Objects.hash(rank, suit)
+    }
+
+    public isAdjacentTo(Card that) {
+        this.rank.isAdjacentTo(that.rank)
     }
 
 }

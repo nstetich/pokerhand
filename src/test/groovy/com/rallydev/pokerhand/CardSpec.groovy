@@ -202,6 +202,23 @@ class CardSpec extends Specification {
         QUEEN | SPADES
     }
 
-    
+    def "isAdjacent should indicate whether two Ranks are adjacent"() {
+        expect:
+        TWO.isAdjacentTo(THREE)
+        THREE.isAdjacentTo(FOUR)
+        !TWO.isAdjacentTo(FOUR)
+        KING.isAdjacentTo(ACE)
+    }
+
+    def "isAdjacent should indicate whether two Cards are adjacent"() {
+        expect:
+        Card.parse(left).isAdjacentTo(Card.parse(right)) == result
+
+        where:
+        left | right | result
+        "2h" | "3h"  | true
+        "2h" | "4h"  | false
+        "2h" | "3d"  | true
+    }
 
 }
