@@ -80,6 +80,11 @@ class Hand {
         if (straight) {
             return new Evaluation(Outcome.STRAIGHT, sortedCards)
         }
+        def threeOfAKind = cardsByRank.find { k, v -> v.size() == 3 }
+        if (threeOfAKind) {
+            return new Evaluation(Outcome.THREE_OF_A_KIND, threeOfAKind.value)    
+        }
+ 
    }
 
 }
