@@ -62,6 +62,9 @@ class Hand {
             if (sortedCards.first().rank == TEN) {
                 return new Evaluation(Outcome.ROYAL_FLUSH, sortedCards)
             } 
+            else {
+                return new Evaluation(Outcome.STRAIGHT_FLUSH, sortedCards)
+            }
         } 
     }
 

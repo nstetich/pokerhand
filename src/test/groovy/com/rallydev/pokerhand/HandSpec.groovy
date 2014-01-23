@@ -157,6 +157,7 @@ class HandSpec extends Specification {
         where:
         hand              | outcome        | cards
         "10h Jh Qh Kh Ah" | ROYAL_FLUSH    | "10h Jh Qh Kh Ah"
+        "9s 10s Js Qs Ks" | STRAIGHT_FLUSH | "9s 10s Js Qs Ks"
     }
 
 }
