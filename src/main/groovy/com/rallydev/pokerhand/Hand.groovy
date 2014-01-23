@@ -84,6 +84,10 @@ class Hand {
         if (threeOfAKind) {
             return new Evaluation(Outcome.THREE_OF_A_KIND, threeOfAKind.value)    
         }
+        def pairs = cardsByRank.findAll { k, v -> v.size() == 2 }
+        if (pairs.size() == 2) {
+            return new Evaluation(Outcome.TWO_PAIR, pairs*.value.flatten())
+        }
  
    }
 

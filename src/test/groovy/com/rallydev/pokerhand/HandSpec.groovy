@@ -163,6 +163,7 @@ class HandSpec extends Specification {
         "2h 5h 4h 6h Kh"  | FLUSH           | "2h 4h 5h 6h Kh"
         "4c 8d 6s 5c 7h"  | STRAIGHT        | "4c 8d 6s 5c 7h"
         "8s 7h 8c Ad 8h"  | THREE_OF_A_KIND | "8s 8c 8h"
+        "3h 3s Qs Jh Js"  | TWO_PAIR        | "3h 3s Jh Js"
 
     }
 
