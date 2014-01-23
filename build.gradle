@@ -1,4 +1,7 @@
 apply plugin: 'groovy'
+apply plugin: 'application'
+
+mainClassName = 'com.rallydev.pokerhand.Application'
 
 repositories {
 	mavenCentral()
@@ -6,7 +9,8 @@ repositories {
 
 dependencies {
 	compile 'org.codehaus.groovy:groovy-all:2.2.1'
-    compile('org.spockframework:spock-core:0.7-groovy-2.0') {
+    testCompile('org.spockframework:spock-core:0.7-groovy-2.0') {
         exclude group: 'org.codehaus.groovy', module: 'groovy-all'
     }   
 }
+
