@@ -88,6 +88,9 @@ class Hand {
         if (pairs.size() == 2) {
             return new Evaluation(Outcome.TWO_PAIR, pairs*.value.flatten())
         }
+        if (pairs.size() == 1) {
+            return new Evaluation(Outcome.PAIR, pairs.values().first())
+        }
  
    }
 
