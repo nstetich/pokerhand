@@ -55,7 +55,6 @@ class Hand {
     }
 
     public Evaluation evaluate() { 
-        def e
         def flush = isFlush()
         def straight = isStraight()
         if (straight && flush) {
@@ -92,9 +91,7 @@ class Hand {
             return new Evaluation(Outcome.PAIR, pairs.values().first())
         }
         return new Evaluation(Outcome.HIGH_CARD, [sortedCards.last()]) 
- 
-   }
-
+    }
 }
 
 class Evaluation {
