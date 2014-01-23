@@ -91,6 +91,7 @@ class Hand {
         if (pairs.size() == 1) {
             return new Evaluation(Outcome.PAIR, pairs.values().first())
         }
+        return new Evaluation(Outcome.HIGH_CARD, [sortedCards.last()]) 
  
    }
 

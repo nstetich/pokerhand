@@ -165,6 +165,7 @@ class HandSpec extends Specification {
         "8s 7h 8c Ad 8h"  | THREE_OF_A_KIND | "8s 8c 8h"
         "3h 3s Qs Jh Js"  | TWO_PAIR        | "3h 3s Jh Js"
         "Ks 4d Qs Kh Jc"  | PAIR            | "Ks Kh"
+        "2h 3d 4h 6h 7s"  | HIGH_CARD       | "7s"
     }
 
 }
