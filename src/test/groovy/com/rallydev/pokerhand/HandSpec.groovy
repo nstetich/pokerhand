@@ -168,4 +168,17 @@ class HandSpec extends Specification {
         "2h 3d 4h 6h 7s"  | HIGH_CARD       | "7s"
     }
 
+    def "evaluation should have a readable toString method"() {
+        expect:
+        new Evaluation(outcome, 
+            cards?.split()?.collect{Card.parse(it)}).toString() == string
+
+        where:
+        outcome        | cards          | string
+        PAIR           | "2d 2h"        | "Pair [2d 2h]"
+        TWO_PAIR       | "2d 2h Js Jc"  | "Two Pair [2d 2h Js Jc]"
+        FOUR_OF_A_KIND | "Kc Kd Ks Kh"  | "Four Of A Kind [Kc Kd Ks Kh]"
+        null           | null           | "null [null]"
+    }
+
 }

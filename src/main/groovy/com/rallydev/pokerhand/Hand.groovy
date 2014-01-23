@@ -102,6 +102,15 @@ class Evaluation {
         this.outcome = outcome
         this.cards = cards
     }
+
+    public String toString() {
+        def outcome = (outcome
+            ? (outcome.name().split(/_/)
+                .collect{it.toLowerCase().capitalize()}.join(' '))
+            : null)
+        return "${outcome} [${cards?.join(" ")}]"
+
+    }
 }
 
 enum Outcome {
