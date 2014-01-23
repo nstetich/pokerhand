@@ -65,7 +65,12 @@ class Hand {
             else {
                 return new Evaluation(Outcome.STRAIGHT_FLUSH, sortedCards)
             }
-        } 
+        }
+        def fourOfAKind = cardsByRank.find { k, v -> v.size() == 4 }
+        if (fourOfAKind) {
+            return new Evaluation(Outcome.FOUR_OF_A_KIND, fourOfAKind.value)
+        }
+        
     }
 
 }

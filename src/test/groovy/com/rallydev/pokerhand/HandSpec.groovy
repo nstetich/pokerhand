@@ -158,6 +158,7 @@ class HandSpec extends Specification {
         hand              | outcome        | cards
         "10h Jh Qh Kh Ah" | ROYAL_FLUSH    | "10h Jh Qh Kh Ah"
         "9s 10s Js Qs Ks" | STRAIGHT_FLUSH | "9s 10s Js Qs Ks"
+        "5h 5d 6h 5s 5c"  | FOUR_OF_A_KIND | "5h 5d 5s 5c"
     }
 
 }
