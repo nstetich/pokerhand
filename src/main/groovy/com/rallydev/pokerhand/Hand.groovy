@@ -70,7 +70,10 @@ class Hand {
         if (fourOfAKind) {
             return new Evaluation(Outcome.FOUR_OF_A_KIND, fourOfAKind.value)
         }
-        
+        def rankCounts = cardsByRank.collectEntries { k, v -> [k, v.size()] }
+        if (2 in rankCounts.values() && 3 in rankCounts.values()) {
+            return new Evaluation(Outcome.FULL_HOUSE, sortedCards)
+        }
     }
 
 }
