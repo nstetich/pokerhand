@@ -77,8 +77,10 @@ class Hand {
         if (flush) {
             return new Evaluation(Outcome.FLUSH, sortedCards)
         }
-        
-    }
+        if (straight) {
+            return new Evaluation(Outcome.STRAIGHT, sortedCards)
+        }
+   }
 
 }
 
