@@ -160,6 +160,7 @@ class HandSpec extends Specification {
         "9s 10s Js Qs Ks" | STRAIGHT_FLUSH | "9s 10s Js Qs Ks"
         "5h 5d 6h 5s 5c"  | FOUR_OF_A_KIND | "5h 5d 5s 5c"
         "3h 3s 3d 2h 2s"  | FULL_HOUSE     | "3h 3s 3d 2h 2s"
+        "2h 5h 4h 6h Kh"  | FLUSH          | "2h 4h 5h 6h Kh"
     }
 
 }

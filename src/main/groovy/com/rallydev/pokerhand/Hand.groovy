@@ -74,6 +74,10 @@ class Hand {
         if (2 in rankCounts.values() && 3 in rankCounts.values()) {
             return new Evaluation(Outcome.FULL_HOUSE, sortedCards)
         }
+        if (flush) {
+            return new Evaluation(Outcome.FLUSH, sortedCards)
+        }
+        
     }
 
 }
